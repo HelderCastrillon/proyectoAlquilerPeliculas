@@ -36,7 +36,7 @@ public class Utilidades {
     	//Closing BufferedWriter Stream
     	bw.close();
 
-	System.out.println("Data successfully appended at the end of file");
+	System.out.println("El registro se almacenó exitosamente");
 
       }catch(IOException ioe){
          System.out.println("Exception occurred:");

@@ -1,8 +1,6 @@
 package alquielerpelicula;
 
-import java.io.FileWriter;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.time.LocalDate;
 import java.util.Scanner;
 
@@ -19,6 +17,8 @@ public class AlquielerPelicula {
         // TODO code application logic here
         Scanner leer = new Scanner(System.in);
         int opcion;
+        Persona mPersona=null;
+        Pelicula mPelicula=null;
         do{
             System.out.println("######    Peliculas de os 90's   #######");
             System.out.println("-----------------------------------------");
@@ -30,13 +30,17 @@ public class AlquielerPelicula {
             System.out.println("5. Salir");
             opcion= leer.nextInt();
             switch(opcion){
-                case 1:
-                    
-                    registrarPersona(leer);                    
+                case 1:                    
+                    mPersona=registrarPersona(leer);                    
                     break;
                 case 2:
-                    registrarPelicula(leer);
+                    mPelicula= registrarPelicula(leer);
                     break;
+                case 3:
+                    if(mPersona!=null && mPelicula!=null)
+                        registroAlquiler(leer,mPersona,mPelicula);
+                   else
+                        System.out.println("Debe primero registrar una persona y al menos una pelicula");
                         
             }
         }while(opcion!=5);
@@ -45,7 +49,7 @@ public class AlquielerPelicula {
 
     }
 
-    public static void registrarPersona( Scanner leer) throws IOException {
+    public static Persona registrarPersona( Scanner leer) throws IOException {
 
          System.out.println("Digite la siguente información.");
          System.out.println("Digite el nombre");
@@ -56,9 +60,10 @@ public class AlquielerPelicula {
          int telefono= leer.nextInt(); 
          System.out.println("Digite la identificación");
          int identificacion= leer.nextInt();  
-         FileWriter personas = null;
-         PrintWriter imprimirPersona=null;
-         misUtilidades.guardarEnArchivo("F:\\TestSO\\personas.txt", nombre+","+direccion+","+telefono+","+identificacion);
+         
+         misUtilidades.guardarEnArchivo("F:\\TestSO\\Alquiler\\personas.txt", nombre+","+direccion+","+telefono+","+identificacion);
+         Persona mPersona= new Persona(nombre, direccion, telefono, identificacion);
+         return mPersona;
     }
     
     public static Pelicula registrarPelicula(Scanner leer) {
@@ -68,16 +73,27 @@ public class AlquielerPelicula {
          System.out.println("Digite el nombre de la pelicula");
          String nombre= leer.next();
          System.out.println("Digite el codigo");
-         int codigo= leer.nextInt(); 
-        Pelicula objPeli = new Pelicula(genero, nombre, codigo);
-        return objPeli;
+         int codigo= leer.nextInt();       
+         
+         misUtilidades.guardarEnArchivo("F:\\TestSO\\Alquiler\\pelicuas.txt", nombre+","+genero+","+codigo);
+         Pelicula mPelicula= new Pelicula(genero, nombre, codigo);
+         return mPelicula;
+
     }
 
-    public static Alquiler registroAlquiler(Persona DPersona, Pelicula DPelicula, LocalDate fechaAlquiler) {
+    public static void registroAlquiler(Scanner leer,Persona DPersona, Pelicula DPelicula) {
 
-        Alquiler objAlquilar = new Alquiler(DPersona, DPelicula, fechaAlquiler);
+        System.out.println("Digite el año alquia la pelicula");
+        int anno=leer.nextInt();
+        System.out.println("Digite el mes alquia la pelicula");
+        int mes=leer.nextInt();
+        System.out.println("Digite el día  alquia la pelicula");
+        int dia=leer.nextInt();
+        
+        LocalDate fechaAlquiler= LocalDate.of(anno, mes, dia);
+        //Alquiler objAlquilar = new Alquiler(DPersona, DPelicula, fechaAlquiler);
+        misUtilidades.guardarEnArchivo("F:\\TestSO\\Alquiler\\alquiter.txt", DPersona.getNombre()+","+DPelicula.getCodigo()+","+fechaAlquiler.toString());
 
-        return objAlquilar;
 
     }
 }
