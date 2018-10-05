@@ -68,14 +68,14 @@ public class AlquielerPelicula {
     
     public static Pelicula registrarPelicula(Scanner leer) {
          System.out.println("Digite la siguente información.");
-         System.out.println("Digite la dirección");
-         String genero= leer.next();
-         System.out.println("Digite el nombre de la pelicula");
+          System.out.println("Digite el nombre de la pelicula");
          String nombre= leer.next();
+         System.out.println("Digiteel genero de la pelicula");
+         String genero= leer.next();
          System.out.println("Digite el codigo");
          int codigo= leer.nextInt();       
          
-         misUtilidades.guardarEnArchivo("F:\\TestSO\\Alquiler\\pelicuas.txt", nombre+","+genero+","+codigo);
+         misUtilidades.guardarEnArchivo("F:\\TestSO\\Alquiler\\pelicuas.txt", nombre+","+genero+","+codigo+"\n");
          Pelicula mPelicula= new Pelicula(genero, nombre, codigo);
          return mPelicula;
 
