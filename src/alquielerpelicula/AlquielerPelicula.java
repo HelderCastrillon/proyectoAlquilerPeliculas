@@ -2,6 +2,8 @@ package alquielerpelicula;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -41,12 +43,26 @@ public class AlquielerPelicula {
                         registroAlquiler(leer,mPersona,mPelicula);
                    else
                         System.out.println("Debe primero registrar una persona y al menos una pelicula");
-                        
+                    break;
+                case 4:
+                    verPersonas();
+                    break;
             }
         }while(opcion!=5);
 
 
 
+    }
+    
+    public static void verPersonas(){
+        List <Persona>lPersonas = new ArrayList<>();
+        lPersonas=  misUtilidades.leerArchivoPersona("F:\\TestSO\\Alquiler\\personas.txt");
+        for(int i =0; i< lPersonas.size(); i++ ){
+            System.out.println("Nombre: "+lPersonas.get(i).getNombre());
+            System.out.println("Identificación: "+lPersonas.get(i).getIdenficacion());
+            System.out.println("Dirección: "+lPersonas.get(i).getDireccion());
+            System.out.println("Teléfono: "+lPersonas.get(i).getTelefono());
+        }
     }
 
     public static Persona registrarPersona( Scanner leer) throws IOException {
