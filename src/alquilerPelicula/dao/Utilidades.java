@@ -3,8 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package alquielerpelicula;
+package alquilerPelicula.dao;
 
+import alquilerPelicula.model.Persona;
+import alquilerPelicula.model.Pelicula;
+import alquilerPelicula.model.Alquiler;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;

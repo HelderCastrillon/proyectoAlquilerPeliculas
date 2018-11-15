@@ -1,5 +1,10 @@
 package alquielerpelicula;
 
+import alquierpelicula.view.jfPrincipal;
+import alquilerPelicula.dao.Utilidades;
+import alquilerPelicula.model.Persona;
+import alquilerPelicula.model.Pelicula;
+import alquilerPelicula.model.Alquiler;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -18,7 +23,13 @@ public class AlquielerPelicula {
     private List <Persona>lPersonas = new ArrayList<>();
 
     public static void main(String[] args) throws IOException {
-        // TODO code application logic here
+
+       jfPrincipal frameinicial = new jfPrincipal(); 
+       frameinicial.setVisible(true);
+      }
+    
+    public static void modoConsola() throws IOException{
+        ////
         Scanner leer = new Scanner(System.in);
         int opcion;
         Persona mPersona=null;
@@ -49,9 +60,6 @@ public class AlquielerPelicula {
                     break;
             }
         }while(opcion!=5);
-
-
-
     }
     
     public static void verPersonas(){
